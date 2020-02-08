@@ -1,20 +1,22 @@
-#defines number of students
-student_count = 11
+#list of students
+students = [
+"Dr. Hannibal Lecter",
+"Darth Vader",
+"Nurse Ratched",
+"Michael Coreleone",
+"Alex DeLarge",
+"The Wicked Witch of the West",
+"Terminator",
+"Freddy Krueger",
+"The Joker",
+"Joffrey  Baratheon",
+"Norman Bates"
+]
 
 #prints the list of students
 puts "The students of Villains Academy"
-puts "------------------------"
-puts "Dr. Hannibal Lecter"
-puts "Darth Vader"
-puts "Nurse Ratched"
-puts "Michael Coreleone"
-puts "Alex DeLarge"
-puts "The Wicked Witch of the West"
-puts "Terminator"
-puts "Freddy Krueger"
-puts "The Joker"
-puts "Joffrey  Baratheon"
-puts "Norman Bates"
+puts "-----------------------------"
+puts students
 
 #prints the number of students on one line
-puts "Overall, we have #{student_count} great students"
+puts "Overall, we have #{students.count} great students"
