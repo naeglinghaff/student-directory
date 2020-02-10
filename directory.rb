@@ -1,9 +1,10 @@
-#prints the list of students
+#prints above the list of students
 def print_header
   puts "The students of Villains Academy"
   puts "-----------------------------"
 end
 
+#prints students
 def print_students(students)
  students.each_with_index do |student, index|
      puts "index: #{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
@@ -14,6 +15,32 @@ end
 def print_footer(students)
  puts "Overall, we have #{students.count} great students"
 end
+
+#creates a menu for the user to choose from
+def interactive_menu
+ students = []
+ 
+ loop do
+  puts "1. Input the students"
+  puts "2. Print out the students"
+  puts "9. Exit"
+  selection = gets.chomp
+  
+  case selection
+    when "1"
+     students = input_students
+    when "2"
+      print_header
+      print_students(students)
+      print_footer(students)
+      when "9"
+       exit
+      else
+       puts "I don't know what you meant, please try again"
+  end
+ end
+end
+
 
 #method for inputting students
 def input_students
@@ -32,7 +59,4 @@ def input_students
  students
 end
 
-students = input_students
-print_header
-print_students(students)
-print_footer(students)
+interactive_menu
