@@ -29,14 +29,19 @@ def input_students
  age = gets.chomp
  puts "What cohort are they joining?"
  cohort = gets.chomp
+ #creating a default cohort and age value
+ cohort = "december" if cohort.empty?
+ age = "unknown" if age.empty?
  #condition to loop through input until user inputs empty name
- while !name.empty? && !age.empty? && !cohort.empty? do
+ while !name.empty? do
    students << {name: name, cohort: cohort.to_sym, age: age}
    puts "now we have #{students.count} great students"
    name = gets.chomp
    age = gets.chomp
    puts "What cohort are they joining?"
    cohort = gets.chomp
+   cohort = "december" if cohort.empty?
+   age = "unknown" if age.empty?
  end
  #returns the array
  students
