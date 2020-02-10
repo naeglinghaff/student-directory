@@ -5,12 +5,13 @@ def print_header
 end
 
 def print_students(students)
- students.each_with_index do |student, index|
-  #only prints out names beginning with p
-  if student[:name].length <= 12
-   puts "index: #{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
-  end
-  end
+ count = 0
+ while count < students.length do
+  student = students[count]
+  string = "#{student[:name]}"
+  puts string.center(30)
+  count += 1
+ end
 end
 
 #prints the number of students on one line
