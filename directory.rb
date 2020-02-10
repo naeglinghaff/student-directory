@@ -7,7 +7,7 @@ def print_header
 end
 
 #prints students
-def print_students()
+def print_student_list
  @students.each_with_index do |student, index|
      puts "index: #{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
   end
@@ -18,36 +18,41 @@ def print_footer
  puts "Overall, we have #{@students.count} great students"
 end
 
+#outputs the menu options
 def prints_menu
  puts "1. Input the students"
   puts "2. Print out the students"
   puts "9. Exit"
 end
 
+#prints the students for option 2
 def show_students
   print_header
-  print_students
+  print_student_list
   print_footer
+end
+
+#processes the users selection from the menu
+def processing(selection)
+ case selection
+   when "1"
+    @students = input_students
+   when "2"
+    show_students
+   when "9"
+    exit
+   else
+     puts "I don't know what you meant, please try again"
+ end
 end
 
 #creates a menu for the user to choose from
 def interactive_menu
  loop do
   prints_menu
-  selection = gets.chomp
-  case selection
-    when "1"
-     @students = input_students
-    when "2"
-      show_students
-      when "9"
-       exit
-      else
-       puts "I don't know what you meant, please try again"
-  end
+  processing(gets.chomp)
  end
 end
-
 
 #method for inputting students
 def input_students
