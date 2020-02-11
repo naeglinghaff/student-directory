@@ -10,7 +10,7 @@ end
 def print_student_list
  @students.each_with_index do |student, index|
    puts "index: #{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
-  end
+ end
 end
 
 #prints the number of students on one line
@@ -60,6 +60,7 @@ def interactive_menu
  end
 end
 
+#saves the student data into a csv file
 def save_students
  file = File.open("students.csv", "w")
  @students.each do |student|
@@ -70,6 +71,7 @@ def save_students
  file.close
 end
 
+#loads the student data from a csv file
 def access_students(filename = "students.csv")
  file = File.open(filename, "r")
  file.readlines.each do |line|
@@ -79,6 +81,7 @@ def access_students(filename = "students.csv")
  file.close
 end
 
+#loads the data on startup
 def try_load_students
  filename =  ARGV.first
  return if filename.nil?
