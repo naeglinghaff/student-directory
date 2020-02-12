@@ -38,7 +38,11 @@ def input_students
  #condition to loop through input until user inputs empty name
  while !name.empty? do
    students << {name: name, cohort: cohort.to_sym}
+   if students.length == 1
+    puts "now we have #{students.count} great student"
+   else
    puts "now we have #{students.count} great students"
+   end
    name = gets.chomp
    puts "What cohort are they joining?"
    cohort = gets.chomp
