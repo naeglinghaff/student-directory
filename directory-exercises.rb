@@ -5,13 +5,18 @@ def print_header
 end
 
 def print_students(students)
- count = 0
- while count < students.length do
-  student = students[count]
-  string = "#{student[:name]} #{student[:age]} #{student[:cohort]}"
-  puts string.center(30)
-  count += 1
- end
+ @cohorts = []
+ students.each do |student|
+   cohort = student[:cohort]
+   name = student[:name]
+   if @cohorts.include? cohort
+    index = @cohorts.index(cohort) 
+    @cohorts.insert(index + 1, name)
+   else
+    @cohorts.push(cohort, name)
+   end
+  end
+  puts @cohorts
 end
 
 #prints the number of students on one line
@@ -21,27 +26,23 @@ end
 
 #method for inputting students
 def input_students
- puts "Please enter the name of the student, followed by their age"
- puts "To exit, press return three times"
+ puts "Please enter the name of the student"
+ puts "To exit, press return twice"
  #empty array
  students = []
  name = gets.chomp
- age = gets.chomp
  puts "What cohort are they joining?"
  cohort = gets.chomp
  #creating a default cohort and age value
  cohort = "december" if cohort.empty?
- age = "unknown" if age.empty?
  #condition to loop through input until user inputs empty name
  while !name.empty? do
-   students << {name: name, cohort: cohort.to_sym, age: age}
+   students << {name: name, cohort: cohort.to_sym}
    puts "now we have #{students.count} great students"
    name = gets.chomp
-   age = gets.chomp
    puts "What cohort are they joining?"
    cohort = gets.chomp
    cohort = "december" if cohort.empty?
-   age = "unknown" if age.empty?
  end
  #returns the array
  students
