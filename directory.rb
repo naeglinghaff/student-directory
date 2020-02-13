@@ -33,7 +33,7 @@ end
 def processing(selection)
  case selection
    when "1"
-    @students = input_students
+    @students = repeating_input
    when "2"
     show_students
    when "3"
@@ -94,16 +94,19 @@ end
 def input_students
  puts "Please enter the student's name and their cohort"
  puts "To exit, press return twice"
- name = STDIN.gets.chomp
- cohort = STDIN.gets.chomp
- cohort = "december" if cohort.empty?
+ @name = STDIN.gets.chomp
+ @cohort = STDIN.gets.chomp
+ @cohort = "december" if @cohort.empty?
+end
+
+#method that repeats input of data
+def repeating_input
+ input_students
  #condition to loop through input until user inputs empty name
- while !name.empty? do
-  sends_students_array(name, cohort)
+ while !@name.empty? do
+  sends_students_array(@name, @cohort)
   students_plural_singular
-  name = STDIN.gets.chomp
-  cohort =STDIN.gets.chomp
-  cohort = "december" if cohort.empty?
+  input_students
  end
  @students
 end
