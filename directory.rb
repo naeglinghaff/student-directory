@@ -24,6 +24,7 @@ end
 
 #prints the students list for option 2
 def show_students
+ puts "printing students..."
  print_header
  print_student_list
  prints_student_singular
@@ -39,6 +40,7 @@ def processing(selection)
    when "3"
     save_students
    when "4"
+    puts "loading students..."
     access_students
    when "9"
     exit
@@ -57,6 +59,7 @@ end
 
 #saves the student data into a csv file
 def save_students
+ puts "saving students..."
  file = File.open("students.csv", "w")
  @students.each do |student|
   student_data = [student[:name], student[:cohort]]
