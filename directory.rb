@@ -9,10 +9,9 @@ end
 #prints students
 def print_student_list
  @students.each_with_index do |student, index|
-   puts "#{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
+   puts "#{index + 1}: #{student[:name]} (#{student[:cohort]} cohort)"
  end
 end
-
 
 #outputs the menu options
 def prints_menu
@@ -97,12 +96,14 @@ def input_students
  puts "To exit, press return twice"
  name = STDIN.gets.chomp
  cohort = STDIN.gets.chomp
+ cohort = "december" if cohort.empty?
  #condition to loop through input until user inputs empty name
  while !name.empty? do
   sends_students_array(name, cohort)
   students_plural_singular
   name = STDIN.gets.chomp
   cohort =STDIN.gets.chomp
+  cohort = "december" if cohort.empty?
  end
  @students
 end
