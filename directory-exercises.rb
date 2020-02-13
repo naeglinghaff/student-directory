@@ -30,9 +30,9 @@ def input_students
  puts "To exit, press return twice"
  #empty array
  students = []
- name = gets.chomp
+ name = gets.strip
  puts "What cohort are they joining?"
- cohort = gets.chomp
+ cohort = gets.strip
  #creating a default cohort and age value
  cohort = "december" if cohort.empty?
  #condition to loop through input until user inputs empty name
@@ -43,9 +43,9 @@ def input_students
    else
    puts "now we have #{students.count} great students"
    end
-   name = gets.chomp
+   name = gets.strip
    puts "What cohort are they joining?"
-   cohort = gets.chomp
+   cohort = gets.strip
    cohort = "december" if cohort.empty?
  end
  #returns the array
