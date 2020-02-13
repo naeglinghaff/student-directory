@@ -71,14 +71,36 @@ def save_students
  file.close
 end
 
+def sends_students_array(name, cohort)
+ @students << {name: name, cohort: cohort.to_sym}
+end
+
 #loads the student data from a csv file
 def access_students(filename = "students.csv")
  file = File.open(filename, "r")
  file.readlines.each do |line|
-  name, cohort = line.chomp.split(",")
-   @students << {name: name, cohort: cohort.to_sym}
+   name, cohort = line.chomp.split(",")
+   sends_students_array(name, cohort)
  end
  file.close
+end
+
+#method for inputting students
+def input_students
+ puts "Please enter the names of the students"
+ puts "To exit, press return twice"
+ name = STDIN.gets.chomp
+ puts "Please enter the student's cohort"
+ cohort = STDIN.gets.chomp
+ #condition to loop through input until user inputs empty name
+ while !name.empty? do
+  sends_students_array(name, cohort)
+  puts "now we have #{@students.count} great students"
+  name = STDIN.gets.chomp
+  cohort = STDIN.gets.chomp
+ end
+ #returns the array
+ @students
 end
 
 #loads the data on startup
@@ -92,21 +114,6 @@ def try_load_students
   puts "Sorry I can't seem to find #{filename}"
   exit
  end
-end
-
-#method for inputting students
-def input_students
- puts "Please enter the names of the students"
- puts "To exit, press return twice"
- name = STDIN.gets.chomp
- #condition to loop through input until user inputs empty name
- while !name.empty? do
-  @students << {name: name, cohort: :november}
-  puts "now we have #{@students.count} great students"
-  name = STDIN.gets.chomp
- end
- #returns the array
- @students
 end
 
 try_load_students
