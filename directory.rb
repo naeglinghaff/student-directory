@@ -15,7 +15,7 @@ end
 
 #prints the number of students on one line
 def print_footer
- puts "Overall, we have #{@students.count} great students"
+ students_plural_singular
 end
 
 #outputs the menu options
@@ -71,6 +71,7 @@ def save_students
  file.close
 end
 
+#inputs name and cohort values into students array
 def sends_students_array(name, cohort)
  @students << {name: name, cohort: cohort.to_sym}
 end
@@ -85,6 +86,15 @@ def access_students(filename = "students.csv")
  file.close
 end
 
+#determines message output depending on the number of students in the array
+def students_plural_singular
+ if @students.length == 1
+   puts "now we have #{@students.count} student"
+ else
+   puts "now we have #{@students.count} students"
+ end
+end
+
 #method for inputting students
 def input_students
  puts "Please enter the names of the students"
@@ -95,7 +105,7 @@ def input_students
  #condition to loop through input until user inputs empty name
  while !name.empty? do
   sends_students_array(name, cohort)
-  puts "now we have #{@students.count} great students"
+  students_plural_singular
   name = STDIN.gets.chomp
   cohort = STDIN.gets.chomp
  end
