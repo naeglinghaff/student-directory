@@ -52,7 +52,15 @@ def input_students
  students
 end
 
+def conditional_print(students)
+ if students.length >= 1
+   print_header
+   print_students(students)
+   print_footer(students)
+ else
+   exit
+ end
+end
+
 students = input_students
-print_header
-print_students(students)
-print_footer(students)
+conditional_print(students)
