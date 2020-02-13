@@ -1,4 +1,5 @@
 @students = []
+require 'csv'
 
 #prints above the list of students
 def print_header
@@ -60,11 +61,9 @@ end
 #saves the student data into a csv file
 def save_students
  puts "saving students..."
- File.open("students.csv", "w") do |f|
+ CSV.open("students.csv", "w") do |csv|
    @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    f.puts csv_line
+    csv << [student[:name], student[:cohort]]
    end
   end
 end
@@ -76,11 +75,9 @@ end
 
 #loads the student data from a csv file
 def access_students(filename = "students.csv")
- File.open(filename, "r") do |f|
-   f.readlines.each do |line|
-     name, cohort = line.chomp.split(",")
-     sends_students_array(name, cohort)
-   end
+ CSV.foreach(filename, "r") do |line|
+   name, cohort = line
+   sends_students_array(name, cohort)
  end
 end
 
