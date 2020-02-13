@@ -60,13 +60,13 @@ end
 #saves the student data into a csv file
 def save_students
  puts "saving students..."
- file = File.open("students.csv", "w")
- @students.each do |student|
-  student_data = [student[:name], student[:cohort]]
-  csv_line = student_data.join(",")
-  file.puts csv_line
- end
- file.close
+ File.open("students.csv", "w") do |f|
+   @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    f.puts csv_line
+   end
+  end
 end
 
 #inputs name and cohort values into students array
@@ -76,12 +76,12 @@ end
 
 #loads the student data from a csv file
 def access_students(filename = "students.csv")
- file = File.open(filename, "r")
- file.readlines.each do |line|
-   name, cohort = line.chomp.split(",")
-   sends_students_array(name, cohort)
+ File.open(filename, "r") do |f|
+   f.readlines.each do |line|
+     name, cohort = line.chomp.split(",")
+     sends_students_array(name, cohort)
+   end
  end
- file.close
 end
 
 #determines message output depending on the number of students in the array
