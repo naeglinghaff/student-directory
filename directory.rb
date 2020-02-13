@@ -113,12 +113,13 @@ end
 #loads the data on startup
 def try_load_students
  filename =  ARGV.first
- return if filename.nil?
- if File.exists?(filename)
+ if filename.nil? 
+  access_students("students.csv")
+ elsif File.exists?(filename)
   access_students(filename)
   puts "loaded #{@students.count} from #{filename}"
  else
-  puts "Sorry I can't seem to find #{filename}"
+  puts "Sorry I can't find that file, default loaded students.csv"
   exit
  end
 end
