@@ -22,11 +22,11 @@ def prints_menu
  puts "9. Exit"
 end
 
-#prints the students for option 2
+#prints the students list for option 2
 def show_students
  print_header
  print_student_list
- students_plural_singular
+ prints_student_singular
 end
 
 #processes the users selection from the menu
@@ -82,7 +82,7 @@ def access_students(filename = "students.csv")
 end
 
 #determines message output depending on the number of students in the array
-def students_plural_singular
+def prints_student_singular
  if @students.length == 1
    puts "now we have #{@students.count} student"
  else
@@ -99,13 +99,12 @@ def input_students
  @cohort = "december" if @cohort.empty?
 end
 
-#method that repeats input of data
+#condition to loop through input until user inputs empty name
 def repeating_input
  input_students
- #condition to loop through input until user inputs empty name
  while !@name.empty? do
   sends_students_array(@name, @cohort)
-  students_plural_singular
+  prints_student_singular
   input_students
  end
  @students
